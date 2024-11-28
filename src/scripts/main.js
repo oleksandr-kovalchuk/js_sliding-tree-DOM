@@ -1,8 +1,9 @@
 'use strict';
 
 const tree = document.querySelector('.tree');
+const listItems = document.querySelectorAll('li');
 
-document.querySelectorAll('li').forEach((item) => {
+listItems.forEach((item) => {
   const span = document.createElement('span');
 
   span.appendChild(item.firstChild);
@@ -10,7 +11,13 @@ document.querySelectorAll('li').forEach((item) => {
 });
 
 tree.addEventListener('click', (e) => {
-  if (e.target.tagName === 'SPAN') {
-    e.target.nextSibling.hidden = !e.target.nextSibling.hidden;
+  const target = e.target;
+
+  if (target.tagName !== 'SPAN') {
+    return;
   }
+
+  const nextSibling = target.nextSibling;
+
+  nextSibling.hidden = !nextSibling.hidden;
 });
